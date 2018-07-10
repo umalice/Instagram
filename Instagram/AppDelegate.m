@@ -27,6 +27,15 @@
     
     [Parse initializeWithConfiguration:config];
     
+    PFUser *user = [PFUser currentUser];
+    if (user != nil) {
+        NSLog(@"Welcome back %@ 😀", user.username);
+        
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        UIViewController *launchController = [storyboard instantiateViewControllerWithIdentifier:@"LaunchController"];
+        self.window.rootViewController = launchController;
+    }
+    
     return YES;
     
 }
