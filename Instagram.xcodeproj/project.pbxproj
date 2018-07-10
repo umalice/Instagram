@@ -13,6 +13,10 @@
 		1E1DE47520F41B2500BCA3ED /* ComposeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E1DE47420F41B2500BCA3ED /* ComposeViewController.m */; };
 		1E1DE47A20F4201200BCA3ED /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E1DE47920F4201200BCA3ED /* Post.m */; };
 		1E1DE47D20F434CA00BCA3ED /* PostCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E1DE47C20F434CA00BCA3ED /* PostCell.m */; };
+		1E590CA820F54DAD00A011DA /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E590CA720F54DAD00A011DA /* ProfileViewController.m */; };
+		1E590CAB20F54EFC00A011DA /* ProfileCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E590CAA20F54EFC00A011DA /* ProfileCell.m */; };
+		1E590CAE20F55A3F00A011DA /* DetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E590CAD20F55A3F00A011DA /* DetailsViewController.m */; };
+		1E590CB420F5756D00A011DA /* EditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E590CB320F5756D00A011DA /* EditViewController.m */; };
 		1E9018BA20F40C840097E689 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E9018B920F40C840097E689 /* AppDelegate.m */; };
 		1E9018C020F40C840097E689 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E9018BE20F40C840097E689 /* Main.storyboard */; };
 		1E9018C220F40C850097E689 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1E9018C120F40C850097E689 /* Assets.xcassets */; };
@@ -55,6 +59,14 @@
 		1E1DE47920F4201200BCA3ED /* Post.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Post.m; sourceTree = "<group>"; };
 		1E1DE47B20F434CA00BCA3ED /* PostCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PostCell.h; sourceTree = "<group>"; };
 		1E1DE47C20F434CA00BCA3ED /* PostCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PostCell.m; sourceTree = "<group>"; };
+		1E590CA620F54DAD00A011DA /* ProfileViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
+		1E590CA720F54DAD00A011DA /* ProfileViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
+		1E590CA920F54EFC00A011DA /* ProfileCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProfileCell.h; sourceTree = "<group>"; };
+		1E590CAA20F54EFC00A011DA /* ProfileCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProfileCell.m; sourceTree = "<group>"; };
+		1E590CAC20F55A3F00A011DA /* DetailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailsViewController.h; sourceTree = "<group>"; };
+		1E590CAD20F55A3F00A011DA /* DetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailsViewController.m; sourceTree = "<group>"; };
+		1E590CB220F5756D00A011DA /* EditViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EditViewController.h; sourceTree = "<group>"; };
+		1E590CB320F5756D00A011DA /* EditViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EditViewController.m; sourceTree = "<group>"; };
 		1E9018B520F40C840097E689 /* Instagram.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Instagram.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1E9018B820F40C840097E689 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		1E9018B920F40C840097E689 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -114,6 +126,12 @@
 				1E1DE47120F4170900BCA3ED /* HomeViewController.m */,
 				1E1DE47320F41B2500BCA3ED /* ComposeViewController.h */,
 				1E1DE47420F41B2500BCA3ED /* ComposeViewController.m */,
+				1E590CA620F54DAD00A011DA /* ProfileViewController.h */,
+				1E590CA720F54DAD00A011DA /* ProfileViewController.m */,
+				1E590CAC20F55A3F00A011DA /* DetailsViewController.h */,
+				1E590CAD20F55A3F00A011DA /* DetailsViewController.m */,
+				1E590CB220F5756D00A011DA /* EditViewController.h */,
+				1E590CB320F5756D00A011DA /* EditViewController.m */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -125,6 +143,8 @@
 				1E1DE47920F4201200BCA3ED /* Post.m */,
 				1E1DE47B20F434CA00BCA3ED /* PostCell.h */,
 				1E1DE47C20F434CA00BCA3ED /* PostCell.m */,
+				1E590CA920F54EFC00A011DA /* ProfileCell.h */,
+				1E590CAA20F54EFC00A011DA /* ProfileCell.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -424,10 +444,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				1E9018C820F40C850097E689 /* main.m in Sources */,
+				1E590CAE20F55A3F00A011DA /* DetailsViewController.m in Sources */,
+				1E590CAB20F54EFC00A011DA /* ProfileCell.m in Sources */,
 				1E1DE47A20F4201200BCA3ED /* Post.m in Sources */,
+				1E590CA820F54DAD00A011DA /* ProfileViewController.m in Sources */,
 				1E9018BA20F40C840097E689 /* AppDelegate.m in Sources */,
 				1E1DE46F20F4140400BCA3ED /* LoginViewController.m in Sources */,
 				1E1DE47D20F434CA00BCA3ED /* PostCell.m in Sources */,
+				1E590CB420F5756D00A011DA /* EditViewController.m in Sources */,
 				1E1DE47520F41B2500BCA3ED /* ComposeViewController.m in Sources */,
 				1E1DE47220F4170900BCA3ED /* HomeViewController.m in Sources */,
 			);
