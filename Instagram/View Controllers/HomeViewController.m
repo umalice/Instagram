@@ -14,6 +14,7 @@
 @interface HomeViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSMutableArray *posts;
+@property (strong, nonatomic) UIRefreshControl *refreshControl;
 
 
 
@@ -27,7 +28,14 @@
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    
     [self fetchPosts];
+    
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self action:@selector(fetchPosts) forControlEvents:UIControlEventValueChanged];
+    [self.tableView insertSubview:self.refreshControl atIndex:0];
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -46,6 +54,7 @@
         if (posts != nil) {
             self.posts = (NSMutableArray *)posts;
             [self.tableView reloadData];
+            [self.refreshControl endRefreshing];
         } else {
             NSLog(@"%@", error.localizedDescription);
         }
