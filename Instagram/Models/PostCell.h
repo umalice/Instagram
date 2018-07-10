@@ -14,5 +14,14 @@
 
 @property (weak, nonatomic) IBOutlet PFImageView *photoView;
 @property (strong, nonatomic) Post *post;
+@property (weak, nonatomic) IBOutlet UILabel *caption;
+@property (weak, nonatomic) IBOutlet UILabel *timestamp;
+@property (weak, nonatomic) IBOutlet UILabel *numLikes;
+@property (weak, nonatomic) IBOutlet UILabel *topUsername;
+@property (weak, nonatomic) IBOutlet UILabel *bottomUsername;
+
+
+
+
 
 @end

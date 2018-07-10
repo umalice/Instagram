@@ -26,6 +26,9 @@
     _post = post;
     self.photoView.file = post[@"image"];
     [self.photoView loadInBackground];
+    self.caption.text = post[@"caption"];
+    self.topUsername.text = post[@"userID"];
+    self.bottomUsername.text = post[@"userID"];
 }
 
 @end

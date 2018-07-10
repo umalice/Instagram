@@ -17,7 +17,6 @@
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
 
 
-
 @end
 
 @implementation HomeViewController
@@ -36,6 +35,16 @@
     [self.refreshControl addTarget:self action:@selector(fetchPosts) forControlEvents:UIControlEventValueChanged];
     [self.tableView insertSubview:self.refreshControl atIndex:0];
     
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"instagram banner"]];
+    CGSize imageSize = CGSizeMake(90, 30);
+    CGFloat marginX = (self.navigationController.navigationBar.frame.size.width / 2) - (imageSize.width / 2);
+    
+    imageView.frame = CGRectMake(marginX, imageSize.height/2 - 5, imageSize.width, imageSize.height);
+    [self.navigationController.navigationBar addSubview:imageView];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [self fetchPosts];
 }
 
 - (void)didReceiveMemoryWarning {
