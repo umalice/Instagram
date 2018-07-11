@@ -8,6 +8,7 @@
 
 #import "DetailsViewController.h"
 #import "ParseUI.h"
+#import "DateTools.h"
 
 @interface DetailsViewController ()
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
@@ -24,9 +25,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-//    CGFloat maxHeight = self.timeStamp.frame.origin.y + self.timeStamp.frame.size.height + 10;
-//    self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width, maxHeight);
-//
+
     [self refreshData];
 }
 
@@ -41,6 +40,9 @@
     self.bottomUsername.text = self.post[@"userID"];
     self.photoView.file = self.post[@"image"];
     self.captionLabel.text = self.post[@"caption"];
+    
+    NSDate *date =self. post.createdAt;
+    self.timeStamp.text = date.timeAgoSinceNow;
     [self.photoView loadInBackground];
     
     

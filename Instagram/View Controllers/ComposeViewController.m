@@ -45,16 +45,13 @@
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
 
-    UIImage *originalImage = info[UIImagePickerControllerOriginalImage];
+    //UIImage *originalImage = info[UIImagePickerControllerOriginalImage];
     UIImage *editedImage = info[UIImagePickerControllerEditedImage];
     
-    //UIImage *resizedImage = [self resizeImage:editedImage withSize:<#(CGSize)#>]
-    
-    
-    // Dismiss UIImagePickerController to go back to your original view controller
+    UIImage *resizedImage = [self resizeImage:editedImage withSize:CGSizeMake(1024, 768)];
     [self dismissViewControllerAnimated:YES completion:nil];
     
-    self.photo = editedImage;
+    self.photo = resizedImage;
     [self.cameraView setImage:self.photo];
     
     [self.captionField becomeFirstResponder];

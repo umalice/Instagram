@@ -19,15 +19,25 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Icon-60" translatesAutoresizingMaskIntoConstraints="NO" id="n8r-99-Uor">
-                                <rect key="frame" x="127" y="273" width="120" height="120"/>
+                                <rect key="frame" x="150" y="333" width="75" height="75"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="instagram banner" translatesAutoresizingMaskIntoConstraints="NO" id="Esz-Wd-Ktp">
+                                <rect key="frame" x="67" y="261" width="240" height="64"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="FsR-zn-Qiw"/>
+                                    <constraint firstAttribute="height" constant="64" id="dMa-Jw-OT1"/>
+                                </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="n8r-99-Uor" secondAttribute="bottom" constant="274" id="9sw-AX-Uus"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="n8r-99-Uor" secondAttribute="trailing" constant="128" id="g5T-yp-T9i"/>
-                            <constraint firstItem="n8r-99-Uor" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="127" id="jHF-h5-hoS"/>
-                            <constraint firstItem="n8r-99-Uor" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="253" id="vFb-N5-o1e"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="n8r-99-Uor" secondAttribute="bottom" constant="259" id="Ecb-No-j91"/>
+                            <constraint firstItem="Esz-Wd-Ktp" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="67" id="PWd-gj-Oi5"/>
+                            <constraint firstItem="n8r-99-Uor" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="150" id="Wdb-RV-2CD"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="n8r-99-Uor" secondAttribute="trailing" constant="150" id="aeI-fw-5AP"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Esz-Wd-Ktp" secondAttribute="trailing" constant="68" id="dAN-lg-F1f"/>
+                            <constraint firstItem="Esz-Wd-Ktp" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="241" id="jx1-bz-wqf"/>
+                            <constraint firstItem="n8r-99-Uor" firstAttribute="top" secondItem="Esz-Wd-Ktp" secondAttribute="bottom" constant="8" id="mba-CO-6Zo"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -39,5 +49,6 @@
     </scenes>
     <resources>
         <image name="Icon-60" width="60" height="60"/>
+        <image name="instagram banner" width="764" height="217"/>
     </resources>
 </document>

@@ -7,6 +7,7 @@
 //
 
 #import "PostCell.h"
+#import "DateTools.h"
 
 
 @implementation PostCell
@@ -29,6 +30,10 @@
     self.caption.text = post[@"caption"];
     self.topUsername.text = post[@"userID"];
     self.bottomUsername.text = post[@"userID"];
+    self.timestamp.text = [NSString stringWithFormat:@"%@", post.createdAt];
+    
+    NSDate *date = post.createdAt;
+    self.timestamp.text = date.timeAgoSinceNow;
 }
 
 @end
