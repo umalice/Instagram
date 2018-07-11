@@ -10,6 +10,8 @@
 #import "Post.h"
 #import "ParseUI.h"
 
+@protocol PostCellDelegate;
+
 @interface PostCell : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet PFImageView *photoView;
@@ -19,9 +21,15 @@
 @property (weak, nonatomic) IBOutlet UILabel *numLikes;
 @property (weak, nonatomic) IBOutlet UILabel *topUsername;
 @property (weak, nonatomic) IBOutlet UILabel *bottomUsername;
+@property (weak, nonatomic) IBOutlet PFImageView *profilePic;
 
+@property (nonatomic, weak) id<PostCellDelegate> delegate;
 
+@end
 
+@protocol PostCellDelegate
+
+- (void)postCell:(PostCell *)postCell didTap:(PFUser *)user;
 
 
 @end

@@ -7,11 +7,14 @@
 //
 
 #import "ProfileViewController.h"
-#import "ParseUI.h"
 #import <UIKit/UIKit.h>
 #import "ProfileCell.h"
 #import "DetailsViewController.h"
 #import <QuartzCore/QuartzCore.h>
+#import "EditViewController.h"
+#import "Post.h"
+#import "AppDelegate.h"
+#import "LoginViewController.h"
 
 @interface ProfileViewController () <UICollectionViewDelegate, UICollectionViewDataSource>
 
@@ -22,6 +25,7 @@
 @property (strong, nonatomic) NSMutableArray *posts;
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
 @property (weak, nonatomic) IBOutlet UIButton *editButton;
+@property (weak, nonatomic) IBOutlet UILabel *numPostsLabel;
 
 @end
 
@@ -33,7 +37,11 @@
     self.collectionView.dataSource = self;
     self.collectionView.delegate = self;
     
+    if(self.currUser == nil) {
+        self.currUser = [PFUser currentUser];
+    }
     [self fetchPosts];
+    [self refreshData];
     
     UICollectionViewFlowLayout *layout = (UICollectionViewFlowLayout *) self.collectionView.collectionViewLayout;
     
@@ -42,8 +50,16 @@
     CGFloat postersPerLine = 3;
     CGFloat itemWidth = (self.collectionView.frame.size.width - (layout.minimumInteritemSpacing * (postersPerLine - 1))) / postersPerLine;
     CGFloat itemHeight = itemWidth;
-    
     layout.itemSize = CGSizeMake(itemWidth, itemHeight);
+    
+    self.editButton.layer.borderWidth = 0.7f;
+    self.editButton.layer.borderColor = [UIColor grayColor].CGColor;
+    
+    if(self.currUser == [PFUser currentUser]) {
+        [self.editButton setTitle:@"Edit profile" forState:UIControlStateNormal];
+    } else {
+        [self.editButton setTitle:@"Message" forState:UIControlStateNormal];
+    }
     
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(fetchPosts) forControlEvents:UIControlEventValueChanged];
@@ -51,9 +67,53 @@
 
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    [self refreshData];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+   
+}
+
+- (void)refreshData {
+    
+    if(self.currUser[@"name"] == nil) {
+        self.currUser[@"name"] = self.currUser.username;
+    }
+
+    if(self.currUser[@"bio"] == nil) {
+        self.currUser[@"bio"] =  @"i love codepath (placeholder)";
+    }
+    
+    self.currUser[@"numPosts"] = [NSNumber numberWithLong:self.posts.count];
+    
+    if(self.currUser[@"numPosts"] == nil) {
+        self.currUser[@"numPosts"] = [NSNumber numberWithInteger:0];
+    }
+    
+    if(self.currUser[@"pic"] == nil) {
+        NSData *placeholderImageData = UIImagePNGRepresentation([UIImage imageNamed:@"profile_tab"]);
+        self.currUser[@"pic"] = [PFFile fileWithName:@"pic.png" data:placeholderImageData];
+    }
+    
+    [self.currUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+        if(succeeded) {
+            NSLog(@"Saved!");
+        } else {
+            NSLog(@"Error: %@", error);
+        }
+    }];
+    
+    self.navigationItem.title = self.currUser.username;
+    self.nameLabel.text = self.currUser[@"name"];
+    self.bioLabel.text = self.currUser[@"bio"];
+    self.profilePic.file = self.currUser[@"pic"];
+    [self.profilePic loadInBackground];
+    self.numPostsLabel.text = [NSString stringWithFormat:@"%@", self.currUser[@"numPosts"]];
+    
+    
+    
 }
 
 - (void)fetchPosts {
@@ -63,20 +123,20 @@
     [query includeKey:@"author"];
     query.limit = 20;
     
-    if(self.currUser == nil) {
-         self.currUser = [PFUser currentUser];
-    }
-    
     [query whereKey:@"author" equalTo:self.currUser];
     
     [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
         if (posts != nil) {
             self.posts = (NSMutableArray *)posts;
-            self.nameLabel.text = self.currUser.username;
-            NSLog(@"%@", self.currUser);
-            self.editButton.layer.borderWidth = 0.8f;
-            self.editButton.layer.borderColor = [UIColor grayColor].CGColor;
-            self.navigationItem.title = self.currUser.username;
+            
+            [self.currUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+                if(succeeded) {
+                    NSLog(@"Saved!");
+                } else {
+                    NSLog(@"Error: %@", error);
+                }
+            }];
+            
             [self.collectionView reloadData];
             [self.refreshControl endRefreshing];
 
@@ -106,6 +166,13 @@
         DetailsViewController *detailController = (DetailsViewController *)nextViewController;
         
         detailController.post = post;
+        
+    } else if([segue.identifier isEqualToString:@"myEditSegue"]) {
+        
+        EditViewController *editController = (EditViewController *)nextViewController.topViewController;
+
+        editController.currUser = self.currUser;
+        
     }
         
 }
@@ -125,6 +192,17 @@
     
     return [self.posts count];
 }
+
+- (IBAction)didLogout:(id)sender {
+    
+    AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    LoginViewController *loginViewController = [storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
+    appDelegate.window.rootViewController = loginViewController;
+    
+}
+
     
 @end
     

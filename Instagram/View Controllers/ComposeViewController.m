@@ -11,8 +11,10 @@
 #import "HomeViewController.h"
 #import "UIKit/UIKit.h"
 #import "Post.h"
+#import "MBProgressHUD.h"
 
 @interface ComposeViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+
 @property (weak, nonatomic) IBOutlet UIImageView *cameraView;
 @property (weak, nonatomic) IBOutlet UITextField *captionField;
 
@@ -91,9 +93,11 @@
 
 - (IBAction)didPost:(id)sender {
     
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [Post postUserImage:self.photo withCaption:self.captionField.text withCompletion:^(BOOL succeeded, NSError  * _Nullable error) {
         if (succeeded) {
             NSLog(@"Shared photo!");
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
             [self dismissViewControllerAnimated:YES completion:nil];
         } else {
             NSLog(@"Error sharing photo: %@", error.localizedDescription);

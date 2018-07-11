@@ -15,6 +15,10 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
+    
+    UITapGestureRecognizer *profileTapGestureRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(didTapUserProfile:)];
+    [self.profilePic addGestureRecognizer:profileTapGestureRecognizer];
+    [self.profilePic setUserInteractionEnabled:YES];
 
 }
 
@@ -25,15 +29,25 @@
 
 - (void)setPost:(Post *)post {
     _post = post;
-    self.photoView.file = post[@"image"];
+    self.photoView.file = post.image;
     [self.photoView loadInBackground];
-    self.caption.text = post[@"caption"];
-    self.topUsername.text = post[@"userID"];
-    self.bottomUsername.text = post[@"userID"];
+    self.caption.text = post.caption;
+    self.topUsername.text = post.author.username;
+    self.bottomUsername.text = post.author.username;
     self.timestamp.text = [NSString stringWithFormat:@"%@", post.createdAt];
     
     NSDate *date = post.createdAt;
     self.timestamp.text = date.timeAgoSinceNow;
+    
+    self.profilePic.file = post.author[@"pic"];
+    [self.profilePic loadInBackground];
+    
+}
+
+- (void) didTapUserProfile:(UITapGestureRecognizer *)sender{
+    
+    [self.delegate postCell:self didTap:self.post.author];
+    
 }
 
 @end

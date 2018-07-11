@@ -10,8 +10,9 @@
 #import "LoginViewController.h"
 #import "AppDelegate.h"
 #import "PostCell.h"
+#import "ProfileViewController.h"
 
-@interface HomeViewController () <UITableViewDelegate, UITableViewDataSource>
+@interface HomeViewController () <UITableViewDelegate, UITableViewDataSource, PostCellDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSMutableArray *posts;
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
@@ -88,16 +89,24 @@
 
 
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     
+    UINavigationController *nextViewController = [segue destinationViewController];
     
+    if([segue.identifier isEqualToString:@"otherProfileSegue"]){
+        
+        ProfileViewController *profileController = (ProfileViewController *)nextViewController;
+        
+        profileController.currUser = sender;
+        
+    }
     
 }
-*/
+
 
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
@@ -105,8 +114,15 @@
     PostCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PostCell" forIndexPath:indexPath];
     //cell.post = self.posts[indexPath.row];
     [cell setPost:self.posts[indexPath.row]];
+    cell.delegate = self;
     
     return cell;
+    
+}
+
+- (void)postCell:(PostCell *)postCell didTap:(PFUser *)user{
+    
+    [self performSegueWithIdentifier:@"otherProfileSegue" sender:user];
     
 }
 

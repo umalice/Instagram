@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <Parse/Parse.h>
 
 @interface EditViewController : UIViewController
+
+@property (nonatomic, strong) UIImage *photo;
+@property (nonatomic, strong) PFUser *currUser;
 
 @end

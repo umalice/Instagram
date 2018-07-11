@@ -18,37 +18,37 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Icon-60" translatesAutoresizingMaskIntoConstraints="NO" id="n8r-99-Uor">
-                                <rect key="frame" x="150" y="333" width="75" height="75"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background-instagram-2" translatesAutoresizingMaskIntoConstraints="NO" id="3Pj-ng-8Pf">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                             </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="instagram banner" translatesAutoresizingMaskIntoConstraints="NO" id="Esz-Wd-Ktp">
-                                <rect key="frame" x="67" y="261" width="240" height="64"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="white font" translatesAutoresizingMaskIntoConstraints="NO" id="Esz-Wd-Ktp">
+                                <rect key="frame" x="51" y="237" width="272" height="100"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="240" id="FsR-zn-Qiw"/>
-                                    <constraint firstAttribute="height" constant="64" id="dMa-Jw-OT1"/>
+                                    <constraint firstAttribute="width" constant="272" id="FsR-zn-Qiw"/>
+                                    <constraint firstAttribute="height" constant="100" id="dMa-Jw-OT1"/>
                                 </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="n8r-99-Uor" secondAttribute="bottom" constant="259" id="Ecb-No-j91"/>
-                            <constraint firstItem="Esz-Wd-Ktp" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="67" id="PWd-gj-Oi5"/>
-                            <constraint firstItem="n8r-99-Uor" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="150" id="Wdb-RV-2CD"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="n8r-99-Uor" secondAttribute="trailing" constant="150" id="aeI-fw-5AP"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Esz-Wd-Ktp" secondAttribute="trailing" constant="68" id="dAN-lg-F1f"/>
-                            <constraint firstItem="Esz-Wd-Ktp" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="241" id="jx1-bz-wqf"/>
-                            <constraint firstItem="n8r-99-Uor" firstAttribute="top" secondItem="Esz-Wd-Ktp" secondAttribute="bottom" constant="8" id="mba-CO-6Zo"/>
+                            <constraint firstItem="3Pj-ng-8Pf" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="0N3-aT-INC"/>
+                            <constraint firstItem="3Pj-ng-8Pf" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="0WL-ds-XmB"/>
+                            <constraint firstItem="3Pj-ng-8Pf" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="2a6-3X-tUJ"/>
+                            <constraint firstItem="Esz-Wd-Ktp" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="51" id="PWd-gj-Oi5"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Esz-Wd-Ktp" secondAttribute="trailing" constant="52" id="dAN-lg-F1f"/>
+                            <constraint firstItem="Esz-Wd-Ktp" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="217" id="jx1-bz-wqf"/>
+                            <constraint firstItem="3Pj-ng-8Pf" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="ydZ-DW-QIl"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="53" y="375"/>
+            <point key="canvasLocation" x="52" y="374.66266866566718"/>
         </scene>
     </scenes>
     <resources>
-        <image name="Icon-60" width="60" height="60"/>
-        <image name="instagram banner" width="764" height="217"/>
+        <image name="background-instagram-2" width="240" height="240"/>
+        <image name="white font" width="978" height="373"/>
     </resources>
 </document>

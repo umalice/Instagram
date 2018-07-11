@@ -17,6 +17,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *bottomUsername;
 @property (weak, nonatomic) IBOutlet UILabel *captionLabel;
 @property (weak, nonatomic) IBOutlet UILabel *timeStamp;
+@property (weak, nonatomic) IBOutlet PFImageView *profilePic;
 
 @end
 
@@ -36,15 +37,18 @@
 
 - (void)refreshData {
     
-    self.usernameLabel.text = self.post[@"userID"];
-    self.bottomUsername.text = self.post[@"userID"];
-    self.photoView.file = self.post[@"image"];
-    self.captionLabel.text = self.post[@"caption"];
-    
-    NSDate *date =self. post.createdAt;
-    self.timeStamp.text = date.timeAgoSinceNow;
+    self.usernameLabel.text = self.post.userID;
+    self.bottomUsername.text = self.post.userID;
+    self.photoView.file = self.post.image;
     [self.photoView loadInBackground];
     
+    self.captionLabel.text = self.post.caption;
+    
+    NSDate *date =self.post.createdAt;
+    self.timeStamp.text = date.timeAgoSinceNow;
+    
+    self.profilePic.file = self.post.author[@"pic"];
+    [self.profilePic loadInBackground];
     
 }
 

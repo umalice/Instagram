@@ -8,10 +8,13 @@
 
 #import "LoginViewController.h"
 #import "Parse.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface LoginViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *usernameField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordField;
+@property (weak, nonatomic) IBOutlet UIButton *loginButton;
+@property (weak, nonatomic) IBOutlet UIButton *signupButton;
 
 @end
 
@@ -19,7 +22,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    self.loginButton.layer.borderWidth = 0.8f;
+    self.loginButton.layer.borderColor = [UIColor grayColor].CGColor;
+    
+    self.signupButton.layer.borderWidth = 0.8f;
+    self.signupButton.layer.borderColor = [UIColor grayColor].CGColor;
 }
 
 - (void)didReceiveMemoryWarning {

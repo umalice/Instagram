@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ParseUI.h"
+#import <Parse/Parse.h>
 
 @interface ProfileViewController : UIViewController
 

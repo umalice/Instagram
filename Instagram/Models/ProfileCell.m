@@ -13,7 +13,7 @@
 
 - (void)setPost:(Post *)post {
     _post = post;
-    self.photoView.file = post[@"image"];
+    self.photoView.file = post.image;
     [self.photoView loadInBackground];
 }
 
