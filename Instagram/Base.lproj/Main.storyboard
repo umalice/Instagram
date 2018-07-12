@@ -422,7 +422,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f7c-zf-AhR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1337" y="1419"/>
+            <point key="canvasLocation" x="961" y="1164"/>
         </scene>
         <!--Edit profile-->
         <scene sceneID="Ma9-oc-4Qa">
@@ -432,7 +432,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="profile_tab" translatesAutoresizingMaskIntoConstraints="NO" id="9cw-hF-fkY" customClass="PFImageView">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9cw-hF-fkY" customClass="PFImageView">
                                 <rect key="frame" x="137" y="99" width="100" height="100"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
@@ -486,7 +486,6 @@
                         <barButtonItem key="leftBarButtonItem" title="Cancel" id="BV0-3O-cpd">
                             <connections>
                                 <action selector="didCancel:" destination="zS8-wd-R7C" id="SIi-bH-7KT"/>
-                                <segue destination="HUi-ML-U0R" kind="show" identifier="cancelEdit" id="sxc-my-IUM"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Save" id="2WR-FA-M5b">
@@ -825,10 +824,9 @@
         <image name="white_heart_icon" width="60" height="60"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="GgB-QT-xBH"/>
         <segue reference="Xi0-SN-YbT"/>
         <segue reference="qIm-Ui-aFx"/>
-        <segue reference="LSv-fj-KMY"/>
+        <segue reference="Ntg-0c-9hU"/>
         <segue reference="hkj-bM-358"/>
     </inferredMetricsTieBreakers>
 </document>

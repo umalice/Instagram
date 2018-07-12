@@ -22,7 +22,7 @@ The following **optional** features are implemented:
 - [X ] Style the login page to look like the real Instagram login page.
 - [X ] Style the feed to look like the real Instagram feed.
 - [X ] User can use a tab bar to switch between all "Instagram" posts and posts published only by the user. AKA, tabs for Home Feed and Profile
-- [ ] User can load more posts once he or she reaches the bottom of the feed using infinite scrolling.
+- [X ] User can load more posts once he or she reaches the bottom of the feed using infinite scrolling.
 - [X ] Show the username and creation time for each post
 - [X ] After the user submits a new post, show a progress HUD while the post is being uploaded to Parse
 - User Profiles:
@@ -37,6 +37,8 @@ The following **additional** features are implemented:
 
 - [ X] List anything else that you can get done to improve the app functionality!
 - User can choose to select from gallery to take a photo 
+- User can tap the home button in the tab bar to scroll up to the top of the feed
+- Profile collection view has infinite scroll
 
 Please list two areas of the assignment you'd like to **discuss further with your peers** during the next class (examples include better ways to implement something, how to extend your app in certain ways, etc):
 

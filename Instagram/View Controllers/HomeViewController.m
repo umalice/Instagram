@@ -167,13 +167,11 @@
     UINavigationController *realController = (UINavigationController *)viewController;
     
     if([realController.topViewController isKindOfClass:[HomeViewController class]]) {
-        NSLog(@"inside");
+
         HomeViewController *selectedController = (HomeViewController *)realController.topViewController;
         [selectedController.tableView setContentOffset:CGPointZero animated:YES];
         
     }
-    
-    
     
 }
 

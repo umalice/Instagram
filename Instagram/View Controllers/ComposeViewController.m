@@ -76,7 +76,6 @@
 
 - (void)selectPicture:(UITapGestureRecognizer *)sender{
     
-    
     UIImagePickerController *imagePickerVC = [UIImagePickerController new];
     imagePickerVC.delegate = self;
     imagePickerVC.allowsEditing = YES;
