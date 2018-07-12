@@ -250,7 +250,7 @@
                     <connections>
                         <outlet property="tableView" destination="d53-R3-wCN" id="Gos-C1-Vnh"/>
                         <segue destination="M65-c4-vWZ" kind="presentation" identifier="composeSegue" id="3UV-bG-kLk"/>
-                        <segue destination="6qw-9H-Vix" kind="show" identifier="otherProfileSegue" id="rb9-ya-9UV"/>
+                        <segue destination="6qw-9H-Vix" kind="show" identifier="otherProfileSegue" id="LSv-fj-KMY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TEF-N4-crv" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -387,7 +387,6 @@
                                         </view>
                                         <connections>
                                             <outlet property="photoView" destination="9XL-AJ-HlA" id="D0t-aj-YQP"/>
-                                            <segue destination="NRr-A3-lHX" kind="show" identifier="detailSegue" id="0ZE-0B-36d"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -402,7 +401,7 @@
                         <viewLayoutGuide key="safeArea" id="446-Bp-QR1"/>
                     </view>
                     <navigationItem key="navigationItem" id="Gef-CU-KBG">
-                        <barButtonItem key="leftBarButtonItem" title="Logout" id="ljo-C3-Xkj">
+                        <barButtonItem key="rightBarButtonItem" title="Logout" id="ljo-C3-Xkj">
                             <connections>
                                 <action selector="didLogout:" destination="6qw-9H-Vix" id="lkc-k4-RXq"/>
                             </connections>
@@ -420,7 +419,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f7c-zf-AhR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="884" y="1085"/>
+            <point key="canvasLocation" x="1337" y="1419"/>
         </scene>
         <!--Edit profile-->
         <scene sceneID="Ma9-oc-4Qa">
@@ -821,11 +820,9 @@
         <image name="white_heart_icon" width="60" height="60"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="9Ow-5R-ddR"/>
         <segue reference="GgB-QT-xBH"/>
-        <segue reference="0ZE-0B-36d"/>
         <segue reference="qIm-Ui-aFx"/>
-        <segue reference="rb9-ya-9UV"/>
+        <segue reference="LSv-fj-KMY"/>
         <segue reference="hkj-bM-358"/>
     </inferredMetricsTieBreakers>
 </document>

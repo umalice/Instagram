@@ -36,16 +36,17 @@
     [self.refreshControl addTarget:self action:@selector(fetchPosts) forControlEvents:UIControlEventValueChanged];
     [self.tableView insertSubview:self.refreshControl atIndex:0];
     
-    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"instagram banner"]];
+    self.banner = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"instagram banner"]];
     CGSize imageSize = CGSizeMake(90, 30);
     CGFloat marginX = (self.navigationController.navigationBar.frame.size.width / 2) - (imageSize.width / 2);
     
-    imageView.frame = CGRectMake(marginX, imageSize.height/2 - 5, imageSize.width, imageSize.height);
-    [self.navigationController.navigationBar addSubview:imageView];
+    self.banner.frame = CGRectMake(marginX, imageSize.height/2 - 5, imageSize.width, imageSize.height);
+    [self.navigationController.navigationBar addSubview:self.banner];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [self fetchPosts];
+    [self.banner setValue:@NO forKeyPath:@"hidden"];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -100,8 +101,8 @@
     if([segue.identifier isEqualToString:@"otherProfileSegue"]){
         
         ProfileViewController *profileController = (ProfileViewController *)nextViewController;
-        
         profileController.currUser = sender;
+        [self.banner setValue:@YES forKeyPath:@"hidden"];
         
     }
     

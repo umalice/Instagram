@@ -10,4 +10,6 @@
 
 @interface HomeViewController : UIViewController
 
+@property (strong, nonatomic) UIImageView *banner;
+
 @end
