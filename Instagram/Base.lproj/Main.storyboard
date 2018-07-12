@@ -144,6 +144,9 @@
                                                         <constraint firstAttribute="width" constant="30" id="ey1-wo-UyI"/>
                                                     </constraints>
                                                     <state key="normal" title="Button" image="white_heart_icon"/>
+                                                    <connections>
+                                                        <action selector="didTapLike:" destination="6BF-VK-qxS" eventType="touchUpInside" id="eMc-LC-TMv"/>
+                                                    </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="252" verticalCompressionResistancePriority="751" text="300" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QtI-Xc-YgN">
                                                     <rect key="frame" x="10" y="447" width="29" height="21"/>

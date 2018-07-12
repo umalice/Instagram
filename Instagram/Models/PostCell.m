@@ -17,8 +17,19 @@
     [super awakeFromNib];
     
     UITapGestureRecognizer *profileTapGestureRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(didTapUserProfile:)];
+    
+    UITapGestureRecognizer *topUserTapGestureRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(didTapUserProfile:)];
+    
+    UITapGestureRecognizer *bottomUserTapGestureRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(didTapUserProfile:)];
+    
     [self.profilePic addGestureRecognizer:profileTapGestureRecognizer];
     [self.profilePic setUserInteractionEnabled:YES];
+    
+    [self.topUsername addGestureRecognizer:topUserTapGestureRecognizer];
+    [self.topUsername setUserInteractionEnabled:YES];
+    
+    [self.bottomUsername addGestureRecognizer:bottomUserTapGestureRecognizer];
+    [self.bottomUsername setUserInteractionEnabled:YES];
 
 }
 
@@ -29,13 +40,18 @@
 
 - (void)refreshData {
     
-    if(self.post.likers == nil) {
-        self.numLikes.text = @"0";
+   self.numLikes.text = [NSString stringWithFormat:@"%i", self.post.likeCount];
+    
+    PFUser *currUser = [PFUser currentUser];
+    
+    if([self.post.likers containsObject:currUser.objectId]) {
+        
+        [self.likeButton setImage:[UIImage imageNamed:@"red_heart"] forState:UIControlStateNormal];
+        
     } else {
-        self.numLikes.text = [NSString stringWithFormat:@"%lu", self.post.likers.count];
+        
+        [self.likeButton setImage:[UIImage imageNamed:@"white_heart_icon"] forState:UIControlStateNormal];
     }
-    
-    
     
 }
 
@@ -51,7 +67,7 @@
     if(post.likers == nil) {
         self.numLikes.text = @"0";
     } else {
-        self.numLikes.text = [NSString stringWithFormat:@"%lu", post.likers.count];
+        self.numLikes.text = [NSString stringWithFormat:@"%i", self.post.likeCount];
     }
     
     NSDate *date = post.createdAt;
@@ -63,6 +79,8 @@
     self.photoView.layer.borderWidth = 0.5f;
     self.photoView.layer.borderColor = [UIColor grayColor].CGColor;
     
+    [self refreshData];
+    
 }
 
 - (void) didTapUserProfile:(UITapGestureRecognizer *)sender{
@@ -70,6 +88,14 @@
     [self.delegate postCell:self didTap:self.post.author];
     
 }
+
+- (IBAction)didTapLike:(id)sender {
+    
+    [self.post didLike:self.post];
+    [self refreshData];
+    
+}
+
 
 
 

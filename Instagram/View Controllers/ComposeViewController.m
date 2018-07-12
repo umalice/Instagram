@@ -98,7 +98,7 @@
         if (succeeded) {
             NSLog(@"Shared photo!");
             [MBProgressHUD hideHUDForView:self.view animated:YES];
-            [self dismissViewControllerAnimated:YES completion:nil];
+            [self performSegueWithIdentifier:@"homeSegue" sender:nil];
         } else {
             NSLog(@"Error sharing photo: %@", error.localizedDescription);
         }

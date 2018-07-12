@@ -22,8 +22,8 @@
     newPost.author = [PFUser currentUser];
     newPost.userID = newPost.author.username;
     newPost.caption = caption;
-    newPost.likeCount = @(0);
-    newPost.commentCount = @(0);
+    newPost.likeCount = 0;
+    newPost.commentCount = 0;
     newPost.likers = [NSMutableArray new];
     
     [newPost saveInBackgroundWithBlock: completion];
@@ -43,5 +43,29 @@
 
     return [PFFile fileWithName:@"image.png" data:imageData];
 }
+
+
+- (void) didLike:(Post *)post {
+    
+    PFUser *currUser = [PFUser currentUser];
+    
+    //already likes the post
+    if([post.likers containsObject:currUser.objectId]) {
+        
+        [post.likers removeObject:currUser.objectId];
+        post.likeCount--;
+        
+    } else {
+        
+        [post.likers addObject:currUser.objectId];
+        post.likeCount++;
+    }
+    
+    [post setObject:post.likers forKey:@"likers"];
+    [post saveInBackground];
+    
+    
+}
+
 
 @end

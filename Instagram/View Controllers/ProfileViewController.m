@@ -52,7 +52,7 @@
     CGFloat itemHeight = itemWidth;
     layout.itemSize = CGSizeMake(itemWidth, itemHeight);
     
-    self.editButton.layer.borderWidth = 0.7f;
+    self.editButton.layer.borderWidth = 0.5f;
     self.editButton.layer.borderColor = [UIColor grayColor].CGColor;
     
     if(self.currUser == [PFUser currentUser]) {
