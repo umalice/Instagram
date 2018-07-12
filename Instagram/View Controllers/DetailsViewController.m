@@ -18,6 +18,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *captionLabel;
 @property (weak, nonatomic) IBOutlet UILabel *timeStamp;
 @property (weak, nonatomic) IBOutlet PFImageView *profilePic;
+@property (weak, nonatomic) IBOutlet UILabel *numLikes;
 
 @end
 
@@ -44,11 +45,19 @@
     
     self.captionLabel.text = self.post.caption;
     
+    if(self.post.likers == nil) {
+        self.numLikes.text = @"0";
+    } else {
+        self.numLikes.text = [NSString stringWithFormat:@"%lu", self.post.likers.count];
+    }
+    
     NSDate *date =self.post.createdAt;
     self.timeStamp.text = date.timeAgoSinceNow;
     
     self.profilePic.file = self.post.author[@"pic"];
     [self.profilePic loadInBackground];
+    self.photoView.layer.borderWidth = 0.5f;
+    self.photoView.layer.borderColor = [UIColor grayColor].CGColor;
     
 }
 

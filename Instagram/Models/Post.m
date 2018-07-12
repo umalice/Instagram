@@ -9,7 +9,7 @@
 #import "Post.h"
 
 @implementation Post
-    @dynamic postID, userID, author, caption, image, likeCount, commentCount;
+    @dynamic postID, userID, author, caption, image, likeCount, commentCount, likers;
 
 + (nonnull NSString *)parseClassName {
     return @"Post";
@@ -24,6 +24,7 @@
     newPost.caption = caption;
     newPost.likeCount = @(0);
     newPost.commentCount = @(0);
+    newPost.likers = [NSMutableArray new];
     
     [newPost saveInBackgroundWithBlock: completion];
 }

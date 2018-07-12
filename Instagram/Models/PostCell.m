@@ -27,6 +27,18 @@
 
 }
 
+- (void)refreshData {
+    
+    if(self.post.likers == nil) {
+        self.numLikes.text = @"0";
+    } else {
+        self.numLikes.text = [NSString stringWithFormat:@"%lu", self.post.likers.count];
+    }
+    
+    
+    
+}
+
 - (void)setPost:(Post *)post {
     _post = post;
     self.photoView.file = post.image;
@@ -36,11 +48,20 @@
     self.bottomUsername.text = post.author.username;
     self.timestamp.text = [NSString stringWithFormat:@"%@", post.createdAt];
     
+    if(post.likers == nil) {
+        self.numLikes.text = @"0";
+    } else {
+        self.numLikes.text = [NSString stringWithFormat:@"%lu", post.likers.count];
+    }
+    
     NSDate *date = post.createdAt;
     self.timestamp.text = date.timeAgoSinceNow;
     
     self.profilePic.file = post.author[@"pic"];
     [self.profilePic loadInBackground];
+    
+    self.photoView.layer.borderWidth = 0.5f;
+    self.photoView.layer.borderColor = [UIColor grayColor].CGColor;
     
 }
 
@@ -49,5 +70,7 @@
     [self.delegate postCell:self didTap:self.post.author];
     
 }
+
+
 
 @end

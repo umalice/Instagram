@@ -22,6 +22,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *topUsername;
 @property (weak, nonatomic) IBOutlet UILabel *bottomUsername;
 @property (weak, nonatomic) IBOutlet PFImageView *profilePic;
+@property (weak, nonatomic) IBOutlet UIButton *likeButton;
 
 @property (nonatomic, weak) id<PostCellDelegate> delegate;
 

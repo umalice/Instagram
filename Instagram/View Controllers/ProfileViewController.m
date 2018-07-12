@@ -138,6 +138,7 @@
             }];
             
             [self.collectionView reloadData];
+            [self refreshData];
             [self.refreshControl endRefreshing];
 
         } else {

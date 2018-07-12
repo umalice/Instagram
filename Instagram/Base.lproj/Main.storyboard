@@ -216,6 +216,7 @@
                                         <connections>
                                             <outlet property="bottomUsername" destination="Pgb-1W-Hvf" id="agQ-pM-3lq"/>
                                             <outlet property="caption" destination="gS8-FO-1g2" id="KI8-jo-LsF"/>
+                                            <outlet property="likeButton" destination="Pm6-h2-hmf" id="q7b-9J-3ah"/>
                                             <outlet property="numLikes" destination="QtI-Xc-YgN" id="lG6-Ec-UJo"/>
                                             <outlet property="photoView" destination="XNj-oc-eWw" id="v70-CL-lGV"/>
                                             <outlet property="profilePic" destination="QDr-d7-uk5" id="gI5-HI-2Pw"/>
@@ -387,6 +388,7 @@
                                         </view>
                                         <connections>
                                             <outlet property="photoView" destination="9XL-AJ-HlA" id="D0t-aj-YQP"/>
+                                            <segue destination="NRr-A3-lHX" kind="show" identifier="detailSegue" id="Xi0-SN-YbT"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -414,7 +416,6 @@
                         <outlet property="nameLabel" destination="3Lc-0t-1bJ" id="bSu-74-exs"/>
                         <outlet property="numPostsLabel" destination="zY7-9Y-sfp" id="k3G-70-Kfb"/>
                         <outlet property="profilePic" destination="8tE-Bg-9Db" id="33W-5q-HKn"/>
-                        <segue destination="GfX-b0-noR" kind="show" identifier="detailSegue" id="DTw-Vu-SgU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f7c-zf-AhR" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -689,6 +690,7 @@
                     <connections>
                         <outlet property="bottomUsername" destination="NmW-Uu-PIN" id="dLA-EM-AhK"/>
                         <outlet property="captionLabel" destination="l3k-Ro-6KL" id="FVm-2U-Gdr"/>
+                        <outlet property="numLikes" destination="j6R-Yg-wAD" id="l9i-hy-qpx"/>
                         <outlet property="photoView" destination="1NQ-UZ-2Pc" id="shw-Cl-gxb"/>
                         <outlet property="profilePic" destination="OF2-Qb-RhQ" id="vOJ-5Z-VdQ"/>
                         <outlet property="scrollView" destination="lPF-SZ-ix0" id="gFW-oV-1iN"/>
@@ -698,7 +700,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hGI-Ec-Dzy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1624.8" y="2141.3793103448279"/>
+            <point key="canvasLocation" x="2564" y="2141.3793103448279"/>
         </scene>
         <!--Home-->
         <scene sceneID="epB-Ss-bIg">
@@ -774,24 +776,6 @@
             <point key="canvasLocation" x="-270" y="1212"/>
         </scene>
         <!--Navigation Controller-->
-        <scene sceneID="tyt-yt-t3z">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="GfX-b0-noR" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Vet-WH-pax">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="NRr-A3-lHX" kind="relationship" relationship="rootViewController" id="kZ1-cq-99V"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="5T8-8N-0Tb" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="884" y="2143"/>
-        </scene>
-        <!--Navigation Controller-->
         <scene sceneID="s7F-aX-0l4">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="DXs-Bj-GRr" sceneMemberID="viewController">
@@ -809,6 +793,25 @@
             </objects>
             <point key="canvasLocation" x="2630" y="1086"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="bNN-bs-KOo">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="3fx-xe-dVu" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="ucs-PE-nFd"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="dsR-OS-npb">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="NRr-A3-lHX" kind="relationship" relationship="rootViewController" id="QLa-Ig-Laa"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RAw-24-bxx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1624.8" y="2141.3793103448279"/>
+        </scene>
     </scenes>
     <resources>
         <image name="comment_icon" width="60" height="60"/>
@@ -821,6 +824,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="GgB-QT-xBH"/>
+        <segue reference="Xi0-SN-YbT"/>
         <segue reference="qIm-Ui-aFx"/>
         <segue reference="LSv-fj-KMY"/>
         <segue reference="hkj-bM-358"/>

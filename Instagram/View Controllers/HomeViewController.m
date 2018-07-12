@@ -42,6 +42,7 @@
     
     self.banner.frame = CGRectMake(marginX, imageSize.height/2 - 5, imageSize.width, imageSize.height);
     [self.navigationController.navigationBar addSubview:self.banner];
+    
 }
 
 - (void)viewDidAppear:(BOOL)animated {
