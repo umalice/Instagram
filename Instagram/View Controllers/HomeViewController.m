@@ -13,7 +13,7 @@
 #import "ProfileViewController.h"
 #import "MBProgressHUD.h"
 
-@interface HomeViewController () <UITableViewDelegate, UITableViewDataSource, PostCellDelegate, UIScrollViewDelegate>
+@interface HomeViewController () <UITableViewDelegate, UITableViewDataSource, PostCellDelegate, UIScrollViewDelegate, UITabBarControllerDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSMutableArray *posts;
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
@@ -30,6 +30,7 @@
     
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
+    self.tabBarController.delegate = self;
     
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
@@ -140,27 +141,6 @@
 }
 
 
-
-
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    
-    UINavigationController *nextViewController = [segue destinationViewController];
-    
-    if([segue.identifier isEqualToString:@"otherProfileSegue"]){
-        
-        ProfileViewController *profileController = (ProfileViewController *)nextViewController;
-        profileController.currUser = sender;
-        [self.banner setValue:@YES forKeyPath:@"hidden"];
-        
-    }
-    
-}
-
-
-
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
 
     PostCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PostCell" forIndexPath:indexPath];
@@ -181,6 +161,42 @@
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return [self.posts count];
 }
+
+- (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController {
+    
+    UINavigationController *realController = (UINavigationController *)viewController;
+    
+    if([realController.topViewController isKindOfClass:[HomeViewController class]]) {
+        NSLog(@"inside");
+        HomeViewController *selectedController = (HomeViewController *)realController.topViewController;
+        [selectedController.tableView setContentOffset:CGPointZero animated:YES];
+        
+    }
+    
+    
+    
+}
+
+
+
+
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
+    UINavigationController *nextViewController = [segue destinationViewController];
+    
+    if([segue.identifier isEqualToString:@"otherProfileSegue"]){
+        
+        ProfileViewController *profileController = (ProfileViewController *)nextViewController;
+        profileController.currUser = sender;
+        [self.banner setValue:@YES forKeyPath:@"hidden"];
+        
+    }
+    
+}
+
 
 
 
