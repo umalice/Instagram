@@ -21,12 +21,22 @@
     newPost.image = [self getPFFileFromImage:image];
     newPost.author = [PFUser currentUser];
     newPost.userID = newPost.author.username;
+    
+    if(newPost.author[@"numPosts"] == nil) {
+        newPost.author[@"numPosts"] = [NSNumber numberWithInteger:1];
+    } else {
+        int newNum = [newPost.author[@"numPosts"] intValue] + 1;
+        newPost.author[@"numPosts"] = [NSNumber numberWithInteger:newNum];
+
+    }
+
     newPost.caption = caption;
     newPost.likeCount = 0;
     newPost.commentCount = 0;
     newPost.likers = [NSMutableArray new];
     
     [newPost saveInBackgroundWithBlock: completion];
+    [newPost.author saveInBackground];
 }
 
 + (PFFile *)getPFFileFromImage: (UIImage * _Nullable)image {

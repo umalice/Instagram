@@ -15,8 +15,9 @@
 #import "Post.h"
 #import "AppDelegate.h"
 #import "LoginViewController.h"
+#import "MBProgressHUD.h"
 
-@interface ProfileViewController () <UICollectionViewDelegate, UICollectionViewDataSource>
+@interface ProfileViewController () <UICollectionViewDelegate, UICollectionViewDataSource, UIScrollViewDelegate>
 
 @property (weak, nonatomic) IBOutlet PFImageView *profilePic;
 @property (weak, nonatomic) IBOutlet UILabel *bioLabel;
@@ -26,6 +27,9 @@
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
 @property (weak, nonatomic) IBOutlet UIButton *editButton;
 @property (weak, nonatomic) IBOutlet UILabel *numPostsLabel;
+
+@property (assign, nonatomic) BOOL isMoreDataLoading;
+@property (nonatomic) int limit;
 
 @end
 
@@ -40,11 +44,14 @@
     if(self.currUser == nil) {
         self.currUser = [PFUser currentUser];
     }
+    
+    self.limit = 20;
+    
     [self fetchPosts];
     [self refreshData];
     
-    UICollectionViewFlowLayout *layout = (UICollectionViewFlowLayout *) self.collectionView.collectionViewLayout;
     
+    UICollectionViewFlowLayout *layout = (UICollectionViewFlowLayout *) self.collectionView.collectionViewLayout;
     layout.minimumInteritemSpacing = 3;
     layout.minimumLineSpacing = 3;
     CGFloat postersPerLine = 3;
@@ -65,15 +72,72 @@
     [self.refreshControl addTarget:self action:@selector(fetchPosts) forControlEvents:UIControlEventValueChanged];
     [self.collectionView insertSubview:self.refreshControl atIndex:0];
 
+
 }
 
 - (void)viewDidAppear:(BOOL)animated {
+    
+    self.limit = 7;
     [self refreshData];
+    
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
    
+}
+
+-(void)loadMoreData{
+    
+    PFQuery *query = [PFQuery queryWithClassName:@"Post"];
+    [query orderByDescending:@"createdAt"];
+    [query includeKey:@"author"];
+    self.limit += 7;
+    query.limit = self.limit;
+    
+    [query whereKey:@"author" equalTo:self.currUser];
+    
+    [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
+        if (posts != nil) {
+            
+            self.posts = (NSMutableArray *)posts;
+            
+            [self.currUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+                if(succeeded) {
+                    NSLog(@"Saved!");
+                    
+                } else {
+                    NSLog(@"Error: %@", error);
+                }
+            }];
+            
+            self.isMoreDataLoading = NO;
+            [MBProgressHUD hideHUDForView:self.collectionView animated:YES];
+            [self.collectionView reloadData];
+            [self refreshData];
+            
+        } else {
+            NSLog(@"%@", error.localizedDescription);
+        }
+    }];
+    
+}
+
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    
+    if(!self.isMoreDataLoading){
+
+        int scrollViewContentHeight = self.collectionView.contentSize.height;
+        int scrollOffsetThreshold = scrollViewContentHeight - self.collectionView.bounds.size.height;
+        
+        if(scrollView.contentOffset.y > scrollOffsetThreshold && self.collectionView.isDragging) {
+            self.isMoreDataLoading = true;
+            [MBProgressHUD showHUDAddedTo:self.collectionView animated:YES];
+            [self loadMoreData];
+        }
+        
+    }
 }
 
 - (void)refreshData {
@@ -85,8 +149,6 @@
     if(self.currUser[@"bio"] == nil) {
         self.currUser[@"bio"] =  @"i love codepath (placeholder)";
     }
-    
-    self.currUser[@"numPosts"] = [NSNumber numberWithLong:self.posts.count];
     
     if(self.currUser[@"numPosts"] == nil) {
         self.currUser[@"numPosts"] = [NSNumber numberWithInteger:0];
@@ -121,7 +183,7 @@
     PFQuery *query = [PFQuery queryWithClassName:@"Post"];
     [query orderByDescending:@"createdAt"];
     [query includeKey:@"author"];
-    query.limit = 20;
+    query.limit = self.limit;
     
     [query whereKey:@"author" equalTo:self.currUser];
     

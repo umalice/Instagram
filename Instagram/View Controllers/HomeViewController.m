@@ -55,6 +55,8 @@
     // Dispose of any resources that can be recreated.
 }
 
+
+
 - (void)fetchPosts {
     
     PFQuery *query = [PFQuery queryWithClassName:@"Post"];
