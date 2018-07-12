@@ -11,12 +11,15 @@
 #import "AppDelegate.h"
 #import "PostCell.h"
 #import "ProfileViewController.h"
+#import "MBProgressHUD.h"
 
-@interface HomeViewController () <UITableViewDelegate, UITableViewDataSource, PostCellDelegate>
+@interface HomeViewController () <UITableViewDelegate, UITableViewDataSource, PostCellDelegate, UIScrollViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSMutableArray *posts;
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
 
+@property (assign, nonatomic) BOOL isMoreDataLoading;
+@property (assign, nonatomic) BOOL isMoreData;
 
 @end
 
@@ -46,16 +49,60 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-    [self fetchPosts];
+
     [self.banner setValue:@NO forKeyPath:@"hidden"];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
+-(void)loadMoreData{
+    
+    PFQuery *query = [PFQuery queryWithClassName:@"Post"];
+    [query orderByDescending:@"createdAt"];
+    [query includeKey:@"author"];
+    
+    Post *lastPost = self.posts[self.posts.count - 1];
+    NSDate *lastDate = lastPost.createdAt;
+    [query whereKey:@"createdAt" lessThan:lastDate];
+    query.limit = 20;
 
+    [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
+        if (posts != nil) {
+                
+            [self.posts addObjectsFromArray:posts];
+            self.isMoreDataLoading = NO;
+            [MBProgressHUD hideHUDForView:self.tableView animated:YES];
+            [self.tableView reloadData];
+            
+            if(posts.count <= 20) {
+                self.isMoreData = NO;
+            }
+            
+        } else {
+            NSLog(@"error: %@", error.localizedDescription);
+        }
+    }];
+
+    
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    
+    if((!self.isMoreDataLoading) && self.isMoreData){
+        
+        int scrollViewContentHeight = self.tableView.contentSize.height;
+        int scrollOffsetThreshold = scrollViewContentHeight - self.tableView.bounds.size.height;
+        
+        if(scrollView.contentOffset.y > scrollOffsetThreshold && self.tableView.isDragging) {
+            self.isMoreDataLoading = YES;
+            [MBProgressHUD showHUDAddedTo:self.tableView animated:YES];
+            [self loadMoreData];
+        }
+        
+    }
+}
 
 - (void)fetchPosts {
     
@@ -67,6 +114,7 @@
     [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
         if (posts != nil) {
             self.posts = (NSMutableArray *)posts;
+            self.isMoreData = YES;
             [self.tableView reloadData];
             [self.refreshControl endRefreshing];
         } else {

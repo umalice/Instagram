@@ -29,7 +29,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *numPostsLabel;
 
 @property (assign, nonatomic) BOOL isMoreDataLoading;
-@property (nonatomic) int limit;
+@property (assign, nonatomic) BOOL isMoreData;
 
 @end
 
@@ -44,8 +44,6 @@
     if(self.currUser == nil) {
         self.currUser = [PFUser currentUser];
     }
-    
-    self.limit = 20;
     
     [self fetchPosts];
     [self refreshData];
@@ -77,14 +75,12 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     
-    self.limit = 7;
     [self refreshData];
     
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-   
 }
 
 -(void)loadMoreData{
@@ -92,16 +88,18 @@
     PFQuery *query = [PFQuery queryWithClassName:@"Post"];
     [query orderByDescending:@"createdAt"];
     [query includeKey:@"author"];
-    self.limit += 7;
-    query.limit = self.limit;
+    
+    Post *lastPost = self.posts[self.posts.count - 1];
+    NSDate *lastDate = lastPost.createdAt;
+    [query whereKey:@"createdAt" lessThan:lastDate];
+    query.limit = 20;
     
     [query whereKey:@"author" equalTo:self.currUser];
     
     [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
         if (posts != nil) {
             
-            self.posts = (NSMutableArray *)posts;
-            
+            [self.posts addObjectsFromArray:posts];
             [self.currUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
                 if(succeeded) {
                     NSLog(@"Saved!");
@@ -116,6 +114,10 @@
             [self.collectionView reloadData];
             [self refreshData];
             
+            if(posts.count <= 20) {
+                self.isMoreData = NO;
+            }
+            
         } else {
             NSLog(@"%@", error.localizedDescription);
         }
@@ -126,13 +128,13 @@
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     
-    if(!self.isMoreDataLoading){
+    if((!self.isMoreDataLoading) && self.isMoreData){
 
         int scrollViewContentHeight = self.collectionView.contentSize.height;
         int scrollOffsetThreshold = scrollViewContentHeight - self.collectionView.bounds.size.height;
         
         if(scrollView.contentOffset.y > scrollOffsetThreshold && self.collectionView.isDragging) {
-            self.isMoreDataLoading = true;
+            self.isMoreDataLoading = YES;
             [MBProgressHUD showHUDAddedTo:self.collectionView animated:YES];
             [self loadMoreData];
         }
@@ -183,13 +185,14 @@
     PFQuery *query = [PFQuery queryWithClassName:@"Post"];
     [query orderByDescending:@"createdAt"];
     [query includeKey:@"author"];
-    query.limit = self.limit;
+    query.limit = 20;
     
     [query whereKey:@"author" equalTo:self.currUser];
     
     [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
         if (posts != nil) {
             self.posts = (NSMutableArray *)posts;
+            self.isMoreData = YES;
             
             [self.currUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
                 if(succeeded) {
