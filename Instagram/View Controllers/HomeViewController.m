@@ -12,6 +12,7 @@
 #import "PostCell.h"
 #import "ProfileViewController.h"
 #import "MBProgressHUD.h"
+#import "CommentViewController.h"
 
 @interface HomeViewController () <UITableViewDelegate, UITableViewDataSource, PostCellDelegate, UIScrollViewDelegate, UITabBarControllerDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -158,6 +159,12 @@
     
 }
 
+- (void)postCell:(PostCell *)postCell didComment:(NSString *)postID{
+    
+    [self performSegueWithIdentifier:@"commentSegue" sender:postID];
+    
+}
+
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return [self.posts count];
 }
@@ -190,6 +197,11 @@
         ProfileViewController *profileController = (ProfileViewController *)nextViewController;
         profileController.currUser = sender;
         [self.banner setValue:@YES forKeyPath:@"hidden"];
+        
+    } else if([segue.identifier isEqualToString:@"commentSegue"]) {
+        
+        CommentViewController *commentController = (CommentViewController *)nextViewController.topViewController;
+        commentController.post = sender;
         
     }
     

@@ -95,8 +95,13 @@
         
     }];
     
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        //
+    }];
+    
     [pictureViewController addAction:cameraAction];
     [pictureViewController addAction:galleryAction];
+    [pictureViewController addAction:cancelAction];
 
     [self presentViewController:pictureViewController animated:YES completion:nil];
     

@@ -36,7 +36,7 @@ The following **optional** features are implemented:
 The following **additional** features are implemented:
 
 - [ X] List anything else that you can get done to improve the app functionality!
-- User can choose to select from gallery to take a photo 
+- User can choose to select from gallery to take a photo or change profile picture
 - User can tap the home button in the tab bar to scroll up to the top of the feed
 - Profile collection view has infinite scroll
 

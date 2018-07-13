@@ -24,6 +24,7 @@
     
     [self.profilePic addGestureRecognizer:profileTapGestureRecognizer];
     [self.profilePic setUserInteractionEnabled:YES];
+    self.profilePic.layer.cornerRadius = self.profilePic.frame.size.width / 2;
     
     [self.topUsername addGestureRecognizer:topUserTapGestureRecognizer];
     [self.topUsername setUserInteractionEnabled:YES];
@@ -96,6 +97,11 @@
     
 }
 
+- (IBAction)didTapComment:(id)sender {
+    
+    [self.delegate postCell:self didComment:self.post];
+   
+}
 
 
 

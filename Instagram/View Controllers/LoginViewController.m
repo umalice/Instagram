@@ -9,6 +9,7 @@
 #import "LoginViewController.h"
 #import "Parse.h"
 #import <QuartzCore/QuartzCore.h>
+#import "MBProgressHUD.h"
 
 @interface LoginViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *usernameField;
@@ -61,7 +62,7 @@
             
         } else {
             NSLog(@"User registered successfully");
-            
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
             [self performSegueWithIdentifier:@"loginSegue" sender:nil];
         }
     }];
@@ -81,6 +82,7 @@
         } else {
             NSLog(@"User logged in successfully");
             
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
             [self performSegueWithIdentifier:@"loginSegue" sender:nil];
         }
     }];
@@ -88,11 +90,13 @@
 
 - (IBAction)didLogin:(id)sender {
     
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [self loginUser];
 }
 
 - (IBAction)didSignup:(id)sender {
     
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     if([self.usernameField.text isEqual:@""]) {
         [LoginViewController presentAlertWithTitle:@"Please enter a username" fromViewController:self];
     }

@@ -25,12 +25,8 @@
     
     [super viewDidLoad];
     
-    if(self.currUser[@"pic"] == nil) {
-        NSData *placeholderImageData = UIImagePNGRepresentation([UIImage imageNamed:@"profile_tab"]);
-        self.currUser[@"pic"] = [PFFile fileWithName:@"pic.png" data:placeholderImageData];
-    }
-    
     self.profilePic.file = self.currUser[@"pic"];
+    self.profilePic.layer.cornerRadius = self.profilePic.frame.size.width / 2;
     
     self.nameField.placeholder = self.currUser[@"name"];
     self.bioField.placeholder = self.currUser[@"bio"];
@@ -65,8 +61,13 @@
         
     }];
     
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        //
+    }];
+    
     [pictureViewController addAction:cameraAction];
     [pictureViewController addAction:galleryAction];
+    [pictureViewController addAction:cancelAction];
     
     [self presentViewController:pictureViewController animated:YES completion:nil];
     

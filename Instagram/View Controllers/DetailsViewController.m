@@ -26,8 +26,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
 
+    self.profilePic.layer.cornerRadius = self.profilePic.frame.size.width / 2;
     [self refreshData];
 }
 

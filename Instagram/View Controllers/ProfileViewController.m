@@ -60,7 +60,9 @@
     self.editButton.layer.borderWidth = 0.5f;
     self.editButton.layer.borderColor = [UIColor grayColor].CGColor;
     
-    if(self.currUser == [PFUser currentUser]) {
+    self.profilePic.layer.cornerRadius = self.profilePic.frame.size.width / 2;
+    
+    if(self.currUser.username == [PFUser currentUser].username) {
         [self.editButton setTitle:@"Edit profile" forState:UIControlStateNormal];
     } else {
         [self.editButton setTitle:@"Message" forState:UIControlStateNormal];
@@ -157,7 +159,7 @@
     }
     
     if(self.currUser[@"pic"] == nil) {
-        NSData *placeholderImageData = UIImagePNGRepresentation([UIImage imageNamed:@"profile_tab"]);
+        NSData *placeholderImageData = UIImagePNGRepresentation([UIImage imageNamed:@"image_placeholder"]);
         self.currUser[@"pic"] = [PFFile fileWithName:@"pic.png" data:placeholderImageData];
     }
     

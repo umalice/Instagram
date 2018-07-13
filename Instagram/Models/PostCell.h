@@ -32,5 +32,6 @@
 
 - (void)postCell:(PostCell *)postCell didTap:(PFUser *)user;
 
+- (void)postCell:(PostCell *)postCell didComment:(Post *)post;
 
 @end
