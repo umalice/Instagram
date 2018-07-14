@@ -159,9 +159,9 @@
     
 }
 
-- (void)postCell:(PostCell *)postCell didComment:(NSString *)postID{
+- (void)postCell:(PostCell *)postCell didComment:(Post *)post{
     
-    [self performSegueWithIdentifier:@"commentSegue" sender:postID];
+    [self performSegueWithIdentifier:@"commentSegue" sender:post];
     
 }
 

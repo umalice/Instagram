@@ -24,7 +24,7 @@
                                 <rect key="frame" x="64" y="231" width="247" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9EW-0b-5pn">
                                 <rect key="frame" x="67" y="351" width="240" height="32"/>
@@ -387,7 +387,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="bKM-rQ-ffM">
-                                <rect key="frame" x="0.0" y="268" width="375" height="350"/>
+                                <rect key="frame" x="0.0" y="271" width="375" height="347"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Fth-S9-Tk9">
                                     <size key="itemSize" width="125" height="125"/>
@@ -429,7 +429,7 @@
                             <constraint firstItem="8tE-Bg-9Db" firstAttribute="top" secondItem="446-Bp-QR1" secondAttribute="top" constant="16" id="Ici-vg-3sE"/>
                             <constraint firstItem="446-Bp-QR1" firstAttribute="trailing" secondItem="jaN-7z-3pf" secondAttribute="trailing" constant="10" id="LTs-Vb-HpU"/>
                             <constraint firstItem="5Il-Bw-s13" firstAttribute="leading" secondItem="446-Bp-QR1" secondAttribute="leading" constant="16" id="Mnf-J0-wzr"/>
-                            <constraint firstItem="bKM-rQ-ffM" firstAttribute="top" secondItem="5Il-Bw-s13" secondAttribute="bottom" constant="15" id="Uxz-7z-yX8"/>
+                            <constraint firstItem="bKM-rQ-ffM" firstAttribute="top" secondItem="5Il-Bw-s13" secondAttribute="bottom" constant="18" id="Uxz-7z-yX8"/>
                             <constraint firstItem="bKM-rQ-ffM" firstAttribute="bottom" secondItem="446-Bp-QR1" secondAttribute="bottom" id="VTn-IB-plg"/>
                             <constraint firstItem="3Lc-0t-1bJ" firstAttribute="top" secondItem="jaN-7z-3pf" secondAttribute="bottom" constant="20" id="XYM-wZ-ADn"/>
                             <constraint firstItem="5Il-Bw-s13" firstAttribute="top" secondItem="3Lc-0t-1bJ" secondAttribute="bottom" constant="12" id="YQs-4e-jPm"/>
@@ -723,7 +723,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lPF-SZ-ix0">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="urx-rw-vmE">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="560.5"/>
@@ -765,6 +765,9 @@
                                                     <constraint firstAttribute="height" constant="30" id="kIi-dJ-X3A"/>
                                                 </constraints>
                                                 <state key="normal" title="Button" image="comment_icon"/>
+                                                <connections>
+                                                    <segue destination="shD-rT-STN" kind="show" identifier="commentDetailSegue" id="L4e-0P-Yba"/>
+                                                </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="252" verticalCompressionResistancePriority="751" text="300" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j6R-Yg-wAD">
                                                 <rect key="frame" x="12" y="479" width="28.5" height="21"/>
@@ -1021,10 +1024,10 @@
         <image name="white_heart_icon" width="60" height="60"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="QLa-Ig-Laa"/>
+        <segue reference="Xi0-SN-YbT"/>
         <segue reference="qIm-Ui-aFx"/>
-        <segue reference="fdb-Ky-jHm"/>
+        <segue reference="L4e-0P-Yba"/>
         <segue reference="LSv-fj-KMY"/>
-        <segue reference="hkj-bM-358"/>
+        <segue reference="Mh0-LO-Tkc"/>
     </inferredMetricsTieBreakers>
 </document>

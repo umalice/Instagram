@@ -58,7 +58,7 @@
         [UIView animateWithDuration:0.2 animations:^{
             
             CGRect newFrame = self.commentView.frame;
-            newFrame.origin.y += 164;
+            newFrame.origin.y += 166;
             self.commentView.frame = newFrame;
             
         }];
@@ -109,7 +109,7 @@
     [UIView animateWithDuration:0.2 animations:^{
         
         CGRect newFrame = self.commentView.frame;
-        newFrame.origin.y += 164;
+        newFrame.origin.y += 166;
         self.commentView.frame = newFrame;
         
     }];
@@ -123,6 +123,8 @@
         }
     }];
     
+    self.commentField.text = @"";
+    
 }
 
 - (IBAction)didBeginEditing:(id)sender {
@@ -131,7 +133,7 @@
     
     [UIView animateWithDuration:0.2 animations:^{
         CGRect newFrame = self.commentView.frame;
-        newFrame.origin.y -= 164;
+        newFrame.origin.y -= 166;
         self.commentView.frame = newFrame;
     }];
     

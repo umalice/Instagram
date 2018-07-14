@@ -9,6 +9,7 @@
 #import "DetailsViewController.h"
 #import "ParseUI.h"
 #import "DateTools.h"
+#import "CommentViewController.h"
 
 @interface DetailsViewController ()
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
@@ -82,14 +83,21 @@
 
 
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    
+    UINavigationController *nextViewController = [segue destinationViewController];
+    
+    if([segue.identifier isEqualToString:@"commentDetailSegue"]) {
+        
+        CommentViewController *commentController = (CommentViewController *)nextViewController;
+        commentController.post = self.post;
+
+    }
 }
-*/
+
 
 @end

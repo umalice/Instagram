@@ -25,8 +25,9 @@
     
     [super viewDidLoad];
     
-    self.profilePic.file = self.currUser[@"pic"];
     self.profilePic.layer.cornerRadius = self.profilePic.frame.size.width / 2;
+    self.profilePic.file = self.currUser[@"pic"];
+    [self.profilePic loadInBackground];
     
     self.nameField.placeholder = self.currUser[@"name"];
     self.bioField.placeholder = self.currUser[@"bio"];
