@@ -51,6 +51,8 @@ Here's a walkthrough of implemented user stories:
 
 <img src='https://i.imgur.com/GgeGUI6.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
+if content length is exceeded, see the file 'gif.gif' in the project repo
+
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 ## Credits
