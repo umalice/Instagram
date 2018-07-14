@@ -12,8 +12,12 @@
 
 @interface Comment : PFObject <PFSubclassing>
 
-@property (nonatomic, strong) Post *post;
-@property (nonatomic, strong) PFUser *commenter;
-@property (nonatomic, strong) NSString *comment;
+@property (nonatomic, strong) Post * _Nullable post;
+@property (nonatomic, strong) PFUser * _Nullable commenter;
+@property (nonatomic, strong) NSString * _Nullable comment;
+@property (nonatomic, strong, nonnull) NSString *postID;
+
++ (void) postComment: (Post * _Nullable)post withCommenter: (PFUser * _Nullable)commenter withcomment: (NSString * _Nullable)comment withCompletion: (PFBooleanResultBlock  _Nullable)completion;
+
 
 @end

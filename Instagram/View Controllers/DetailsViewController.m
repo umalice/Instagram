@@ -19,6 +19,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *timeStamp;
 @property (weak, nonatomic) IBOutlet PFImageView *profilePic;
 @property (weak, nonatomic) IBOutlet UILabel *numLikes;
+@property (weak, nonatomic) IBOutlet UIButton *likeButton;
 
 @end
 
@@ -51,6 +52,17 @@
         self.numLikes.text = [NSString stringWithFormat:@"%lu", self.post.likers.count];
     }
     
+    PFUser *currUser = [PFUser currentUser];
+    
+    if([self.post.likers containsObject:currUser.objectId]) {
+        
+        [self.likeButton setImage:[UIImage imageNamed:@"red_heart"] forState:UIControlStateNormal];
+        
+    } else {
+        
+        [self.likeButton setImage:[UIImage imageNamed:@"white_heart_icon"] forState:UIControlStateNormal];
+    }
+    
     NSDate *date =self.post.createdAt;
     self.timeStamp.text = date.timeAgoSinceNow;
     
@@ -60,6 +72,15 @@
     self.photoView.layer.borderColor = [UIColor grayColor].CGColor;
     
 }
+
+- (IBAction)didTapLike:(id)sender {
+    
+    [self.post didLike:self.post];
+    [self refreshData];
+    
+}
+
+
 
 /*
 #pragma mark - Navigation

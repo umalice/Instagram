@@ -10,7 +10,7 @@
 
 @implementation Comment
 
-@dynamic post, comment, commenter;
+@dynamic post, comment, commenter, postID;
 
 + (nonnull NSString *)parseClassName {
     return @"Comment";

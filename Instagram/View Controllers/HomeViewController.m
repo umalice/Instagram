@@ -78,7 +78,7 @@
             [MBProgressHUD hideHUDForView:self.tableView animated:YES];
             [self.tableView reloadData];
             
-            if(posts.count <= 20) {
+            if(posts.count < 20) {
                 self.isMoreData = NO;
             }
             
@@ -145,7 +145,7 @@
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
 
     PostCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PostCell" forIndexPath:indexPath];
-    //cell.post = self.posts[indexPath.row];
+
     [cell setPost:self.posts[indexPath.row]];
     cell.delegate = self;
     
@@ -200,9 +200,9 @@
         
     } else if([segue.identifier isEqualToString:@"commentSegue"]) {
         
-        CommentViewController *commentController = (CommentViewController *)nextViewController.topViewController;
+        CommentViewController *commentController = (CommentViewController *)nextViewController;
         commentController.post = sender;
-        
+        [self.banner setValue:@YES forKeyPath:@"hidden"];
     }
     
 }
